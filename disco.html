@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disco Boxes</title>
+    <style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #282c34;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+
+    .container1 {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: lightgray;
+        border: 2px solid black;
+        border-radius: 10px;
+        transition: background-color 0.2s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    button {
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #61dafb;
+        color: black;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #21a1f1;
+    }
+</style>
+</head>
+<body>
+
+    <div class="container1">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+
+    <button onclick="startDisco()">Start</button>
+    <button onclick="stopDisco()">Stop</button>
+
+    <script>
+        let intervalId;
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function startDisco() {
+    if (intervalId) return;
+    intervalId = setInterval(() => {
+        const boxes = document.querySelectorAll('.box');
+        boxes.forEach(box => {
+            box.style.backgroundColor = getRandomColor();
+        });
+    }, 200);
+}
+
+        function stopDisco() {
+            clearInterval(intervalId);
+        }
+    </script>
+
+</body>
+
+</html>
